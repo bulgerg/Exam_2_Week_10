@@ -58,8 +58,8 @@ class Bank(object):
 
     def withdraw(self, amount):
         if self.balance - amount <= 0:
-            self.balance = self.balance - amount
-            print('***Error: Negative balance***')
+            print('***Error: Insufficient Funds***')
+            print('***Withdraw Unsuccessful***')
         else:
             self.balance = self.balance - amount
         """
@@ -157,8 +157,8 @@ def run_test_withdraw():
     expected_name = 'Brackin'
     expected_balance = 5000
     expected_account_number = 'A1'
-    print("Expected:", expected_name, expected_balance, expected_account_number)
-    print("Actual:  ", b1.name, b1.balance, b1.account_number)
+    print("Expected:", expected_name, 'New Balance', expected_balance, expected_account_number)
+    print("Actual:  ", b1.name, 'New Balance', b1.balance, b1.account_number)
     if (expected_name == b1.name) and (expected_balance == b1.balance) and (expected_account_number == b1.account_number):
         print("Test passed SUCCESSFULLY!")
     else:
@@ -167,10 +167,10 @@ def run_test_withdraw():
     b1 = Bank('Smith', 10000, 'A2')
     b1.withdraw(12000)
     expected_name = 'Smith'
-    expected_balance = -2000
+    expected_balance = 10000
     expected_account_number = 'A2'
-    print("Expected:", expected_name, expected_balance, expected_account_number)
-    print("Actual:  ", b1.name, b1.balance, b1.account_number)
+    print("Expected:", expected_name, 'New Balance', expected_balance, expected_account_number)
+    print("Actual:  ", b1.name, 'New Balance', b1.balance, b1.account_number)
     if (expected_name == b1.name) and (expected_balance == b1.balance) and (
             expected_account_number == b1.account_number):
         print("Test passed SUCCESSFULLY!")
@@ -182,7 +182,8 @@ def run_test_withdraw():
     expected_name = 'Rose'
     expected_balance = 8000
     expected_account_number = 'A3'
-    print("Actual:  ", b1.name, b1.balance, b1.account_number)
+    print("Expected:", expected_name, 'New Balance', expected_balance, expected_account_number)
+    print("Actual:  ", b1.name, 'New Balance', b1.balance, b1.account_number)
     if (expected_name == b1.name) and (expected_balance == b1.balance) and (
             expected_account_number == b1.account_number):
         print("Test passed SUCCESSFULLY!")
