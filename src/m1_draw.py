@@ -80,7 +80,7 @@ def test_draw_a_picture():
 #   The is_prime function is supplied.  Do NOT change is_prime
 #     """
 ###############################################################################
-# TODO: 1  READ the doc-string for the is_prime function defined below.
+# DONE: 1  READ the doc-string for the is_prime function defined below.
 # You do NOT need to understand its implementations,
 # just its specification (per the doc-string).
 # You should  ** CALL **  functions as needed in implementing the
@@ -111,7 +111,7 @@ def is_prime(n):
     return True
 
 # -------------------------------------------------------------------------
-#  TODO: 2. Implement and test the draw_a_picture function.
+#  DONE: 2. Implement and test the draw_a_picture function.
 #           Tests have been written for you (above in main).
 #  We suggest breaking this into multiple commits.
 #     Can you show the correct circle?
@@ -128,8 +128,59 @@ def is_prime(n):
 #
 #
 def draw_a_picture(point, n, color, window):
+    p1 = rg.Point(point.x - 80, point.y + 40)
+    p2 = rg.Point(point.x + 80, point.y - 40)
+    circle = rg.Circle(point, 100)
+    circle.attach_to(window)
+    window.render(0.5)
+    rectangle = rg.Rectangle(p1, p2)
+    rectangle.attach_to(window)
+    window.render(0.5)
+    pr = rectangle.get_upper_right_corner()
+    dx = 160/(n - 1)
+    for k in range(1, n + 1):
+        line = rg.Line(point, pr)
+        line.color = color
+        if is_prime(k) == True:
+            line.color = 'orange'
+        line.attach_to(window)
+        pr.x = pr.x - dx
+    window.render(0.5)
 
-    pass
+# def draw_a_picture(point, n, color, window):
+#     """
+#     See   m1_draw_problem_picture.pdf   in this project for pictures
+#     that may help you better understand the following specification:
+#
+#     What comes in:
+#       -- An rg.Point.
+#       -- A positive integer n.
+#       -- A color
+#       -- An rg.RoseWindow.
+#
+#     What goes out:  Nothing (i.e., None).
+#     Side effects:
+#       Draws an rg.Circle with the given point as the center.
+#       The radius of the rg.Circle is 100 pixels
+#       Draws an rg.Rectangle with the given point as the center.
+#       The width of the Rectangle is 160 pixels and the height is 80 pixels
+#       Draws n lines from the Center of the Rectangle to the top line
+#       of the Rectangle that are equally spaced
+#       The color is used as the line colors unless the number of the line
+#       is prime.  If the number of the line is prime,
+#       the color should be 'orange'. The fist line drawn should be
+#       the color given because one is not considered prime.
+#
+#       -- There is a 0.5 second pause after each rg.Circle is drawn.
+#       Must  ** NOT close **   the window.
+#
+#     Type hints:
+#       :type circle: rg.Circle
+#       :type n: int
+#       :type window: rg.RoseWindow
+#   The is_prime function is supplied.  Do NOT change is_prime
+#     """
+###############################################################################
 
 
 main()
